@@ -1,5 +1,7 @@
 package com.ganteng.botak.androidcircleci.login;
 
+import com.ganteng.botak.androidcircleci.login.model.User;
+
 /**
  * Created by adityahadiwijaya on 1/17/17.
  */
