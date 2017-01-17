@@ -7,6 +7,6 @@ package com.ganteng.botak.androidcircleci.login;
 public interface LoginRepository {
 
     User getUser();
-    
+
     void saveUser(User user);
 }
