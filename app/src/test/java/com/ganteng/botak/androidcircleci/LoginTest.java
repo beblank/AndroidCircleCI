@@ -57,6 +57,7 @@ public class LoginTest {
         when(mockLoginView.getPassword()).thenReturn("");
 
         presenter.saveUser();
+
         verify(mockLoginView, times(1)).getUserName();
         verify(mockLoginView, times(1)).getPassword();
         verify(mockLoginView, times(1)).showInputError();
@@ -69,8 +70,8 @@ public class LoginTest {
 
         presenter.saveUser();
 
-        verify(mockLoginView, times(1)).getUserName();
-        verify(mockLoginView, times(1)).getPassword();
+        verify(mockLoginView, times(2)).getUserName();
+        verify(mockLoginView, times(2)).getPassword();
 
         verify(mockLoginModel, times(1)).createUser("username", "password");
 
