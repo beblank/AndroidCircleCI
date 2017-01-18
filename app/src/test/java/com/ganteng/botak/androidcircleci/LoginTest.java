@@ -5,7 +5,11 @@ import com.ganteng.botak.androidcircleci.login.LoginActivityPresenter;
 import com.ganteng.botak.androidcircleci.login.User;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
 
 
 import org.junit.Before;
@@ -32,6 +36,45 @@ public class LoginTest {
     @Test
     public void noInteractionWithView(){
          verifyZeroInteractions(mockLoginView);
+    }
+
+    @Test
+    public void shouldCreateErrorMessageIfUsernamEmpty(){
+        when(mockLoginView.getUserName()).thenReturn("");
+
+        presenter.saveUser();
+
+        verify(mockLoginView, times(1)).getUserName();
+        verify(mockLoginView, never()).getPassword();
+        verify(mockLoginView, times(1)).showInputError();
+
+
+    }
+
+    @Test
+    public void sholdCreateErrorMessageIfPasswordEmpty(){
+        when(mockLoginView.getUserName()).thenReturn("username");
+        when(mockLoginView.getPassword()).thenReturn("");
+
+        presenter.saveUser();
+        verify(mockLoginView, times(1)).getUserName();
+        verify(mockLoginView, never()).getPassword();
+        verify(mockLoginView, times(1)).showInputError();
+    }
+
+    @Test
+    public void shouldSaveValidUser(){
+        when(mockLoginView.getUserName()).thenReturn("username");
+        when(mockLoginView.getPassword()).thenReturn("password");
+
+        presenter.saveUser();
+
+        verify(mockLoginView, times(1)).getUserName();
+        verify(mockLoginView, times(1)).getPassword();
+
+        verify(mockLoginModel, times(1)).createUser("username", "password");
+
+        verify(mockLoginView, times(1)).showUserSavedMessage();
     }
 
 
