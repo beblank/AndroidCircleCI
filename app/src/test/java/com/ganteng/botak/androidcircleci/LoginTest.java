@@ -58,7 +58,7 @@ public class LoginTest {
 
         presenter.saveUser();
         verify(mockLoginView, times(1)).getUserName();
-        verify(mockLoginView, never()).getPassword();
+        verify(mockLoginView, times(1)).getPassword();
         verify(mockLoginView, times(1)).showInputError();
     }
 
