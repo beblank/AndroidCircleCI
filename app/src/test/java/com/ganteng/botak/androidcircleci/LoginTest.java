@@ -31,8 +31,7 @@ public class LoginTest {
 
     @Test
     public void noInteractionWithView(){
-        presenter.getCurrentUser();
-        verifyZeroInteractions(mockLoginView);
+         verifyZeroInteractions(mockLoginView);
     }
 
 
