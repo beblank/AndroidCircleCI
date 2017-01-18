@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.ganteng.botak.androidcircleci.R;
 import com.ganteng.botak.androidcircleci.root.App;
@@ -49,36 +50,36 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
 
     @Override
     public String getUserName() {
-        return null;
+        return usernameInput.getText().toString();
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return usernameInput.getText().toString();
     }
 
     @Override
     public void showUserNotAvailable() {
-
+        Toast.makeText(this, "Error: the user is not available", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showInputError() {
-
+        Toast.makeText(this, "Username or Password cannot be empty", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showUserSavedMessage() {
-
+        Toast.makeText(this, "User saved!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void setUsername(String uname) {
-
+        usernameInput.setText(uname);
     }
 
     @Override
     public void setPassword(String pass) {
-
+        passwordInput.setText(pass);
     }
 }
